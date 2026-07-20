@@ -4,6 +4,7 @@
   vars:
     instances: ["mongodb", "redis", "mysql" ,"user", "cart"]
     image_id: ami-0220d79f3f480ecf5
+    domain_name: manikumar.online
 
   tasks: 
   - name: create ec2 instance
@@ -19,14 +20,41 @@
      
     
 
-  - name: print ec2_instance
-    ansible.builtin.debug:
-      msg: "{{ ec2_output }}"
+  # - name: print ec2_instance
+  #   ansible.builtin.debug:
+  #     msg: "{{ ec2_output }}"
+
+  # - name: create route53 records
+  #   debug:
+  #     msg: "Instance Name: {{ item.item }} PrivateIP: {{ item.instances[0].private_ip_address }}"
+  #   loop: "{{ ec2_output.results }}"  
 
   - name: create route53 records
-    debug:
-      msg: "Instance Name: {{ item.item }} PrivateIP: {{ item.instances[0].private_ip_address }}"
-    loop: "{{ ec2_output.results }}"  
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+    overwrite: true
+    loop: "{{ ec2_output.results }}"
+
+    
+
+  - name: create route53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address }}"
+    overwrite: true
+    loop: "{{ ec2_output.results }}"
+    
+    
+    
     
     
       
