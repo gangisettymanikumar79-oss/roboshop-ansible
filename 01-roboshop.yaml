@@ -93,7 +93,7 @@
       type: A
       ttl: 1
     loop: "{{ instances }}" 
-    when: action = "delete" 
+    when: action == "delete" 
 
   - name: delete route53 records for frontend
     amazon.aws.route53:
