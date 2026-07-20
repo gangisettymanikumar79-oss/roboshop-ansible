@@ -1,4 +1,4 @@
-- name: create on ec2 instance
+- name: roboshop instances management
   hosts: local
   connection: local
   vars:
