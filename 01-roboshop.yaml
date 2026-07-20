@@ -2,24 +2,25 @@
   hosts: local
   connection: local
   vars:
-    instance: [ "mongodb", "redis",  "mysql" ]
+    instances: ["mongodb", "redis", "mysql"]
     image_id: ami-0220d79f3f480ecf5
 
   tasks: 
   - name: create ec2 instance
     amazon.aws.ec2_instance:
-    instance_type: t3.micro
-    image_id: "{{image_id}}"
-    security_groups:
-    - "roboshop-{{ item }}"
-    - roboshop-commongroup
+     instance_type: t3.micro
+     image_id: "{{image_id}}"
+     security_groups:
+     - "roboshop-{{ item }}"
+     - roboshop-commongroup
     name: "roboshop-{{ item }}"
     loop: "{{ instances }}"
     register: ec2_output
 
   - name: print ec2_instance
-    debug:
-    msg: "{{ec2_instance}}"
+    ansible.builtin.debug:
+      msg: "{{ec2_instance}}"
+    
 
 
 
