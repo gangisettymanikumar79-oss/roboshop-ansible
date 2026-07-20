@@ -11,11 +11,13 @@
      instance_type: t3.micro
      image_id: "{{image_id}}"
      security_groups:
-     - "roboshop-{{ item }}"
-     - roboshop-commongroup
-    name: "roboshop-{{ item }}"
+             - "roboshop-{{ item }}"
+             - roboshop-commongroup
+     name: "roboshop-{{ item }}"
     loop: "{{ instances }}"
     register: ec2_output
+    
+    
 
   - name: print ec2_instance
     ansible.builtin.debug:
