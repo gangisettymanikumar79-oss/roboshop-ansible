@@ -109,13 +109,14 @@
     - item == "frontend"
   
   - name: Delete EC2 instances
-  amazon.aws.ec2_instance:
-    state: absent
-    name: "roboshop-{{ item }}"
-    wait: false
-    region: us-east-1
-  loop: "{{ instances }}"
-  when: action == "delete"
+    amazon.aws.ec2_instance:
+     state: absent
+     name: "roboshop-{{ item }}"
+     wait: false
+     region: us-east-1
+    loop: "{{ instances }}"
+    when: action == "delete"
+  
 
   
   
