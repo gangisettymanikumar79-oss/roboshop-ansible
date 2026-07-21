@@ -6,7 +6,12 @@
     copy:
       src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
-      
+  - name: install mongodb server
+    package:
+      name: mongodb-org
+      state: present
+
+
       
       
       
