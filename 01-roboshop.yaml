@@ -108,6 +108,15 @@
     - action == "delete"
     - item == "frontend"
   
+  - name: delete route53 records for frontend
+    amazon.aws.route53:
+    state: absent
+    name: "roboshop-{{ item }}"
+    wait: false
+    region: us-east-1
+    loop: "{{ instances  }}"  
+    when: action == "delete"
+  
     
 
 
