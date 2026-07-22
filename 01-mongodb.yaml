@@ -9,8 +9,8 @@
   - name: install mongodb server
     package:
       name: mongodb-org
-      state: present
-      
+      state: present  
+          
       
 
 
