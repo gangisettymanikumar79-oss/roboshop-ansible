@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-    instances: [ "mongodb", "redis", "mysql" ,"user", "cart", "frontend", "Rabbitmq", "catalogue","shipping","payment" ]
+    instances: [ "mongodb", "redis", "mysql" ,"user", "cart", "frontend", "rabbitmq", "catalogue","shipping","payment" ]
     image_id: ami-0220d79f3f480ecf5
     domain_name: manikumar.online
     action: create
