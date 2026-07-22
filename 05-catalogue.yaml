@@ -14,5 +14,39 @@
       system: true
       home: /app
       shell: /sbin/nologin
-      comment: "RoboShop system user"    
+      comment: "RoboShop system user"
+  - name: remove app directory 
+    file:
+      path: /app
+      state: absent
+  - name: delete catalogue.zip
+    file:
+      path: /tmp/catalogue.zip
+      state: absent
+  - name: create app directory
+    file:
+      path: /app
+      state: absent
+  - name: download catalogue
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+      dest: /tmp/catalogue.zip
+  - name: unzip catalogue 
+    unarchive:
+      src: /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes
+  - name: install dependencies
+    community.general.npm:
+      pat: /app
+      
+
+    
+
+
+    
+
+    
+
+
 
