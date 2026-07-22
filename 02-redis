@@ -23,6 +23,7 @@
         name: redis
         state: start
         enable: yes
+        
 
       
 
