@@ -10,7 +10,7 @@
     - name: install mongodb server
       package:
         name: mongodb-org
-        state: presen
+        state: present
       replace:
         path: /etc/mongod.conf
         regexp: '127.0.0.1'
