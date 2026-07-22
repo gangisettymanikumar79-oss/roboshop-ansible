@@ -1,0 +1,34 @@
+- name: configue user server
+  hosts: local
+  become: yes
+  tasks:
+  - name: enable nodejs 20
+    command: dnf module enable nodejs:20 -y
+  - name: install nodejs 20
+    package:
+      name: nodejs
+      state: present
+  - name: create system user
+    user:
+      name: roboShop
+      system: true
+      home: /app
+      shell: /sbin/nologin
+      comment: "RoboShop system user"
+  - name: delete /app directory
+    file:
+      path: /app
+      state: absent
+  - name: delete user.zip in /tmp
+    file:
+      path: /app
+      state: absent
+  - name: delete user.zip in /tem
+    file:
+      path: /tmp/user.zip
+      state: directory
+  - name:
+
+
+
+
