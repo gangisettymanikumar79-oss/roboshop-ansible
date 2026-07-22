@@ -11,6 +11,7 @@
       package:
         name: mongodb-org
         state: present
+    - name: update mongod bind IP
       replace:
         path: /etc/mongod.conf
         regexp: '127.0.0.1'
