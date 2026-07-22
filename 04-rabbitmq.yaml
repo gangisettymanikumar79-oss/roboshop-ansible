@@ -15,6 +15,7 @@
       name: rabbitmq-server
       start: started
       enabled: yes
+      
     
 
     
