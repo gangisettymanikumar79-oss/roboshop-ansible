@@ -2,24 +2,32 @@
   hosts:  mongodb
   become: yes
   tasks:
-  - name: copy mongodb repo
-    copy:
-      src: mongodb.repo
-      dest: /etc/yum.repos.d/mongo.repo
-  - name: install mongodb server
-    package:
-      name: mongodb-org
-      state: present 
-    replace:
-      path: /etc/mongod.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
+    - name: copy mongodb repo
+      copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
+  
+    - name: install mongodb server
+      package:
+        name: mongodb-org
+        state: presen
+      replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+        
+    - name: start and enable mongodb
+      service:
+        name: mongod
+        state: started
+        enabled: yes
+        
+       
+      
+      
     
-  - name: start and enable mongodb
-    service:
-    name: mongod
-    state: started
-    enabled: yes
+    
+  
       
       
 
