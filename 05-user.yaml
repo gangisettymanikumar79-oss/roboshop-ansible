@@ -21,11 +21,11 @@
       state: absent
   - name: delete user.zip in /tmp
     file:
-      path: /app
+      path: /tmp/user.zip
       state: absent
   - name: delete user.zip in /tem
     file:
-      path: /tmp/user.zip
+      path: /app
       state: directory
   - name: download user code
     get_url:
