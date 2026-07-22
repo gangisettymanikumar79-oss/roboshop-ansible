@@ -26,7 +26,7 @@
   - name: create app directory
     file:
       path: /app
-      state: absent
+      state: directory
   - name: download catalogue
     get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
@@ -69,11 +69,11 @@
   - name: deamon reload
     systemd_service:
       name: catalogue
-      deamon_reload: true
+      daemon_reload: true
   - name: enable and start catalogue
     service:
       name: catalogue
-      state: restarted
+      state: started
       enabled: yes
             
 
