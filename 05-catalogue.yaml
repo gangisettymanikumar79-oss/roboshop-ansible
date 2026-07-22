@@ -38,7 +38,7 @@
       remote_src: yes
   - name: install dependencies
     community.general.npm:
-      pat: /app
+      path: /app
   - name: copy catalogue server
     template:
       src: catalogue.server.j2
