@@ -45,7 +45,7 @@
       type: A
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
-      overwrite: true
+      hello overwrite: true
     loop: "{{ ec2_output.results }}"
     when:  
     - item.item == "frontend"
@@ -96,7 +96,7 @@
       region: us-east-1
     loop: "{{ instances }}"
     when: action == "delete"
-    
+
 
 
 
