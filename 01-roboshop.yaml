@@ -110,7 +110,7 @@
     - action == "create"
     - item.item == "frontend"
   
-  -name: Delete EC2 instances
+  -name: delete EC2 instances
   amazon.aws.ec2_instance:
      state: absent
      name: "roboshop-{{ item }}"
