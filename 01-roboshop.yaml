@@ -45,17 +45,7 @@
 
     
 
-  - name: create route53 records
-    amazon.aws.route53:
-      state: present
-      zone: "{{ domain_name }}"
-      record: "{{ domain_name }}"
-      type: A
-      ttl: 1
-      value: "{{ item.instances[0].public_ip_address }}"
-      overwrite: true
-    loop: "{{ ec2_output.results }}"
-    when:  action == "create"
+  
 
   - name: create route53 records
     amazon.aws.route53:
@@ -110,7 +100,7 @@
     - action == "create"
     - item.item == "frontend"
   
-  -name: delete EC2 instances
+  -name: Delete EC2 instances
   amazon.aws.ec2_instance:
      state: absent
      name: "roboshop-{{ item }}"
