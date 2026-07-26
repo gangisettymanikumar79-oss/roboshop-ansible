@@ -58,10 +58,10 @@
       login_host: "{{ MYSQL_HOST }}"
       target:
     loop: 
-    - < /app/db/schema.sql
-    - < /app/db/app-user.sql 
-    - < /app/db/master-data.sql
-    
+    -  /app/db/schema.sql
+    -  /app/db/app-user.sql 
+    -  /app/db/master-data.sql
+
 
     
 
