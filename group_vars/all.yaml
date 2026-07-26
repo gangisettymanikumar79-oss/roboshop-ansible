@@ -7,6 +7,8 @@ CATALOGUE_HOST: catalogue.manikumar.online
 RABBITMQ_HOST: rabbitmq.manikumar.online
 USER_HOST: user.manikumar.online
 CART_HOST: cart.manikumar.online
+SHIPPING:  shipping.manikumar.online
+
 
 
 
