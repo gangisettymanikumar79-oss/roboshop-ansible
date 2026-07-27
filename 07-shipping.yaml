@@ -1,5 +1,5 @@
-- name:  configue user server
-  hosts: local
+- name: configure shipping server
+  hosts: shipping
   become: yes
   tasks:
   - name: install maven
@@ -7,20 +7,20 @@
       name: "{{ item }}"
       state: present
     loop:
-      - maven
-      - mysql
-  - name: create roboShop system user
+    - maven
+    - mysql
+  - name: create roboshop system user
     user:
-      name: roboShop
+      name: roboshop
       system: true
       home: /app
       shell: /sbin/nologin
-      comment: "RoboShop system user"
-  - name: remove app directory 
+      comment: "Roboshop System user"
+  - name: remove app directory
     file:
       path: /app
       state: absent
-  - name: delete shipping .zip in tmp directory 
+  - name: delete shipping.zip in tmp directory
     file:
       path: /tmp/shipping.zip
       state: absent
@@ -30,9 +30,9 @@
       state: directory
   - name: download shipping
     get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
       dest: /tmp/shipping.zip
-  - name: unzip shipping 
+  - name: unzip shipping
     unarchive:
       src: /tmp/shipping.zip
       dest: /app
@@ -42,18 +42,20 @@
     args:
       chdir: /app
   - name: move shipping jar
-    command: mv target/shipping-1.0.jar shipping.jar
+    command: mv target/shipping-1.0.jar shipping.jar 
     args:
       chdir: /app
-  - name: copy shipping server
+  - name: copy shipping service
     template:
-      src: shipping.server.j2
+      src: shipping.service.j2
       dest: /etc/systemd/system/shipping.service
+
   - name: install python dependencies
     pip:
-      name: pymysql
+      name: PyMySQL
       executable: pip3.9
 
+ 
   - name: load mysql data
     community.mysql.mysql_db:
       state: import
@@ -64,11 +66,9 @@
       target: "{{ item }}"
     loop:
     - /app/db/schema.sql
-    - /app/db/app-user.sql
+    - /app/db/app-user.sql 
     - /app/db/master-data.sql
-
-  
-    
+ 
   - name: deamon reload
     systemd_service:
       name: shipping
@@ -76,30 +76,5 @@
   - name: enable and start shipping
     service:
       name: shipping
-      state: started
+      state: restarted
       enabled: yes
-      
-      
-
-  
-
-
-
-
-
-    
-
-    
-
-      
-      
-
-
-
-
-
-    
-      
-    
-
-
