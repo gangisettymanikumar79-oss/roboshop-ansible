@@ -8,6 +8,7 @@ RABBITMQ_HOST: rabbitmq.manikumar.online
 USER_HOST: user.manikumar.online
 CART_HOST: cart.manikumar.online
 SHIPPING__HOST:  shipping.manikumar.online
+PAYMENT_HOST: payment.manikumar.online
 
 
 
