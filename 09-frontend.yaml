@@ -26,9 +26,10 @@
       dest: /tmp/frontend.zip
   - name: unzip frontend
     unarchive:
-      src: /tmp/frontend.zip
-      dest: /app
-      remote_src: yes
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+    
   - name: remove nginx default configue
     file:
       path: /etc/nginx/nginx.conf
