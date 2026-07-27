@@ -1,5 +1,5 @@
 - name: configue frontend server
-  hosts: local
+  hosts:  frontend
   become: yes
   tasks:
   - name: enable install 1.24
@@ -42,7 +42,7 @@
       name: nginx
       state: restarted
       enabled: yes
-      
+
 
       
 
